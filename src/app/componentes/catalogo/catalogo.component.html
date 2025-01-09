@@ -1,0 +1,40 @@
+<div class="p-6 bg-gray-100 min-h-screen">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">Catálogo de Películas</h1>
+
+  <div class="mb-6">
+    <h2 class="text-xl font-semibold text-gray-700">Filtrar por género:</h2>
+    <div class="flex flex-wrap gap-2 mt-4">
+      <button
+        *ngFor="let genero of generos"
+        (click)="buscarPorGenero(genero.nombre)"
+        class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+      >
+        {{ genero.nombre }}
+      </button>
+    </div>
+  </div>
+
+  <h2 class="text-2xl font-semibold text-gray-700 mt-6">Resultados por género: {{ generoSeleccionado }}</h2>
+  <ul class="list-disc list-inside mt-4">
+    <li *ngFor="let pelicula of resultadosBusqueda" class="text-gray-700 flex items-center justify-start mb-4">
+      <span>{{ pelicula.titulo }} ({{ pelicula.anio }}) - {{ pelicula.calificacion }}/10</span>
+      <button
+        (click)="cambiarCalificacion(pelicula)"
+        class="ml-4 text-gray-500 hover:text-gray-700 transition-colors flex items-center gap-2"
+        aria-label="Cambiar calificación"
+      >
+        <mat-icon>create</mat-icon>
+      </button>
+    </li>
+  </ul>
+
+  <h2 class="text-2xl font-semibold text-gray-700 mt-6">3 Mejor Calificadas</h2>
+  <ul class="list-disc list-inside mt-4">
+    <li *ngFor="let pelicula of mejoresCalificadas" class="text-gray-700">
+      {{ pelicula.titulo }} ({{ pelicula.anio }}) - {{ pelicula.calificacion }}/10
+    </li>
+  </ul>
+
+  <h2 class="text-2xl font-semibold text-gray-700 mt-6">Calificación promedio</h2>
+  <p class="text-gray-700 mt-2">{{ calificacionPromedio }}</p>
+</div>

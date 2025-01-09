@@ -1,0 +1,107 @@
+<div class="max-w-3xl mx-auto p-6 bg-gray-100 rounded shadow-md">
+  <h1 class="text-2xl font-bold text-center mb-6">Zoológico Virtual</h1>
+
+  <!-- Sección: Agregar Animal -->
+  <div class="mb-6">
+    <h2 class="text-lg font-semibold mb-4">Agregar Animal</h2>
+    <div class="mb-4">
+      <label for="nombre" class="block text-sm font-medium text-gray-700 mb-2">Nombre</label>
+      <input
+        id="nombre"
+        [(ngModel)]="nuevoAnimal.nombre"
+        placeholder="Nombre"
+        class="w-full p-2 border border-gray-300 rounded"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label for="edad" class="block text-sm font-medium text-gray-700 mb-2">Edad</label>
+      <input
+        id="edad"
+        type="number"
+        [(ngModel)]="nuevoAnimal.edad"
+        placeholder="Edad"
+        class="w-full p-2 border border-gray-300 rounded"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label for="especie" class="block text-sm font-medium text-gray-700 mb-2">Especie</label>
+      <input
+        id="especie"
+        [(ngModel)]="nuevoAnimal.especie"
+        placeholder="Especie"
+        class="w-full p-2 border border-gray-300 rounded"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label for="habitat" class="block text-sm font-medium text-gray-700 mb-2">Hábitat</label>
+      <input
+        id="habitat"
+        [(ngModel)]="nuevoAnimal.habitat"
+        placeholder="Hábitat"
+        class="w-full p-2 border border-gray-300 rounded"
+      />
+    </div>
+
+    <button
+      (click)="agregarAnimal()"
+      class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded"
+    >
+      Agregar Animal
+    </button>
+  </div>
+
+  <!-- Sección: Buscar Animales por Especie -->
+  <div class="mb-6">
+    <h2 class="text-lg font-semibold mb-4">Buscar Animales por Especie</h2>
+    <div class="flex gap-2 mb-4">
+      <select [(ngModel)]="especieSeleccionada" class="flex-1 p-2 border border-gray-300 rounded">
+        <option *ngFor="let especie of especies" [value]="especie">{{ especie }}</option>
+      </select>
+      <button
+        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+        (click)="buscarAnimalesPorEspecie()"
+      >
+        Buscar
+      </button>
+    </div>
+
+    <ul *ngIf="buscarAnimalesPorEspecie().length > 0; else noAnimales">
+      <li *ngFor="let animal of buscarAnimalesPorEspecie()" class="p-2 mb-2 bg-white rounded shadow">
+        {{ animal.mostrarInformacion() }}
+      </li>
+    </ul>
+
+    <ng-template #noAnimales>
+      <p class="text-center text-gray-500">No se encontraron animales con esa especie.</p>
+    </ng-template>
+  </div>
+
+  <!-- Sección: Mostrar Animales por Hábitat -->
+  <div class="mb-6">
+    <h2 class="text-lg font-semibold mb-4">Mostrar Animales por Hábitat</h2>
+    <div class="flex gap-2 mb-4">
+      <select [(ngModel)]="habitatSeleccionado" class="flex-1 p-2 border border-gray-300 rounded">
+        <option *ngFor="let habitat of habitats" [value]="habitat">{{ habitat }}</option>
+      </select>
+      <button
+        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+        (click)="mostrarAnimalesPorHabitat()"
+      >
+        Buscar
+      </button>
+    </div>
+
+    <ul *ngIf="mostrarAnimalesPorHabitat().length > 0; else noAnimalesHabitat">
+      <li *ngFor="let animal of mostrarAnimalesPorHabitat()" class="p-2 mb-2 bg-white rounded shadow">
+        {{ animal.mostrarInformacion() }}
+      </li>
+    </ul>
+
+    <ng-template #noAnimalesHabitat>
+      <p class="text-center text-gray-500">No se encontraron animales en ese hábitat.</p>
+    </ng-template>
+  </div>
+</div>

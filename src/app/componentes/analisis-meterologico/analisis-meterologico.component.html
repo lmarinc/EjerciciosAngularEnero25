@@ -1,0 +1,45 @@
+<div class="max-w-3xl mx-auto p-6 bg-gray-100 rounded shadow-md">
+  <h1 class="text-2xl font-bold text-center mb-6">Análisis Meteorológico</h1>
+
+  <!-- Sección: Resumen del Mes -->
+  <div class="mb-6">
+    <h2 class="text-lg font-semibold mb-4">Resumen del Mes</h2>
+    <p class="text-sm text-gray-700">Resumen del mes:</p>
+    <p class="text-sm text-gray-700">Días lluviosos: {{ filtrarDiasLluviosos().length }}</p>
+    <p class="text-sm text-gray-700">Temperatura promedio: {{ calcularTemperaturaPromedio() | number: '1.1-1' }}°C</p>
+    <p class="text-sm text-gray-700">Máxima temperatura: {{ encontrarDiaMasCalido().temperatura }}°C el día {{ encontrarDiaMasCalido().fecha }}</p>
+  </div>
+
+  <!-- Sección: Temperatura Promedio -->
+  <div class="mb-6">
+    <h2 class="text-lg font-semibold mb-4">Temperatura Promedio</h2>
+    <p class="text-xl font-bold text-green-600">
+      {{ calcularTemperaturaPromedio() | number: '1.1-1' }}°C
+    </p>
+  </div>
+
+  <!-- Sección: Días Lluviosos -->
+  <div class="mb-6">
+    <h2 class="text-lg font-semibold mb-4">Días Lluviosos</h2>
+    <ul>
+      <li
+        *ngFor="let dia of filtrarDiasLluviosos()"
+        class="p-2 mb-2 bg-white rounded shadow flex justify-between items-center"
+      >
+        <div>
+          <p class="font-semibold">{{ dia.fecha }}</p>
+          <p class="text-sm text-gray-600">Precipitación: {{ dia.precipitacion }} mm</p>
+        </div>
+        <mat-icon class="text-gray-500">cloud_queue</mat-icon>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Sección: Día Más Caliente -->
+  <div class="mb-6">
+    <h2 class="text-lg font-semibold mb-4">Día Más Caliente</h2>
+    <p class="text-xl font-bold text-red-600">
+      {{ encontrarDiaMasCalido().temperatura }}°C el día {{ encontrarDiaMasCalido().fecha }}
+    </p>
+  </div>
+</div>
