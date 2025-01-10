@@ -1,0 +1,45 @@
+<div class="max-w-3xl mx-auto p-6 bg-gray-100 rounded shadow-md">
+  <h1 class="text-2xl font-bold text-center mb-6">Supermercado</h1>
+
+  <!-- Mostrar productos originales -->
+  <div class="mb-6">
+    <h2 class="text-lg font-semibold mb-4">Lista de Productos</h2>
+    <ul>
+      <li *ngFor="let producto of productos" class="p-2 mb-2 bg-white rounded shadow">
+        {{ producto.nombre }} - {{ producto.precio }}€ (Categoría: {{ producto.categoria }})
+      </li>
+    </ul>
+  </div>
+
+  <!-- Productos con precio > 10 -->
+  <div class="mb-6">
+    <h2 class="text-lg font-semibold mb-4">Productos con precio superior a 10€</h2>
+    <ul *ngIf="productosCaros().length > 0; else noProductosCaros">
+      <li *ngFor="let producto of productosCaros()" class="p-2 mb-2 bg-white rounded shadow">
+        {{ producto }}
+      </li>
+    </ul>
+    <ng-template #noProductosCaros>
+      <p class="text-center text-gray-500">No hay productos con precio superior a 10€.</p>
+    </ng-template>
+  </div>
+
+  <!-- Precio promedio de alimentos -->
+  <div class="mb-6">
+    <h2 class="text-lg font-semibold mb-4">Precio Promedio de Alimentos</h2>
+    <p>
+      Precio promedio de la categoría "alimentos":
+      <span class="font-bold">{{ precioPromedioAlimentos() }}€</span>
+    </p>
+  </div>
+
+  <!-- Productos con descuento -->
+  <div class="mb-6">
+    <h2 class="text-lg font-semibold mb-4">Productos con Descuento (10%)</h2>
+    <ul>
+      <li *ngFor="let producto of productosConDescuento()" class="p-2 mb-2 bg-white rounded shadow">
+        {{ producto.nombre }} - {{ producto.precio }}€ (Categoría: {{ producto.categoria }})
+      </li>
+    </ul>
+  </div>
+</div>

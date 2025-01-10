@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1,
+h2 {
+  color: #1a202c;
+}
+
+p {
+  color: #4a5568;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  border: 1px solid #e2e8f0;
+}

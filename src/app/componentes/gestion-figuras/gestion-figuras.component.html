@@ -1,0 +1,27 @@
+<div class="max-w-4xl mx-auto p-6 bg-gray-100 rounded shadow-md">
+  <h1 class="text-2xl font-bold text-center mb-6">Gestión de Figuras Geométricas</h1>
+
+  <!-- Mostrar mensaje si no hay figuras -->
+  <div *ngIf="figuras.length === 0" class="text-center text-gray-500">
+    No hay figuras registradas.
+  </div>
+
+  <!-- Mostrar lista de figuras y sus áreas -->
+  <ul *ngIf="figuras.length > 0" class="space-y-4">
+    <li
+      *ngFor="let figura of figuras; let i = index"
+      class="p-4 bg-white rounded shadow flex justify-between items-center"
+    >
+      <p class="text-gray-700">
+        Figura:
+        <span *ngIf="esRectangulo(figura)">
+          Rectángulo (Base: {{ figura.base }}, Altura: {{ figura.altura }})
+        </span>
+        <span *ngIf="esCirculo(figura)">
+          Círculo (Radio: {{ figura.radio }})
+        </span>
+      </p>
+      <p class="text-gray-700">Área: {{ areas[i] | number:'1.2-2' }} u²</p>
+    </li>
+  </ul>
+</div>

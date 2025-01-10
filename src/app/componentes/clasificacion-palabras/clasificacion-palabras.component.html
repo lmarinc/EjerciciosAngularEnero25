@@ -1,0 +1,52 @@
+<div class="max-w-xl mx-auto p-6 bg-gray-100 rounded shadow-md">
+  <h1 class="text-2xl font-bold text-center mb-6">Clasificación de Palabras</h1>
+
+  <!-- Lista de palabras originales -->
+  <div class="mb-6">
+    <h2 class="text-lg font-semibold mb-4">Palabras Originales</h2>
+    <ul>
+      <li *ngFor="let palabra of palabras" class="p-2 mb-2 bg-white rounded shadow">
+        {{ palabra }}
+      </li>
+    </ul>
+  </div>
+
+  <!-- Palabras en mayúsculas -->
+  <div class="mb-6">
+    <h2 class="text-lg font-semibold mb-4">Palabras en Mayúsculas</h2>
+    <ul>
+      <li
+        *ngFor="let palabra of palabrasEnMayusculas()"
+        class="p-2 mb-2 bg-white rounded shadow"
+      >
+        {{ palabra }}
+      </li>
+    </ul>
+  </div>
+
+  <!-- Palabras con más de 5 letras -->
+  <div class="mb-6">
+    <h2 class="text-lg font-semibold mb-4">Palabras con más de 5 letras</h2>
+    <ul *ngIf="palabrasLargas().length > 0; else noPalabrasLargas">
+      <li *ngFor="let palabra of palabrasLargas()" class="p-2 mb-2 bg-white rounded shadow">
+        {{ palabra }}
+      </li>
+    </ul>
+    <ng-template #noPalabrasLargas>
+      <p class="text-center text-gray-500">No hay palabras con más de 5 letras.</p>
+    </ng-template>
+  </div>
+
+  <!-- Palabras ordenadas por longitud -->
+  <div class="mb-6">
+    <h2 class="text-lg font-semibold mb-4">Palabras Ordenadas por Longitud</h2>
+    <ul>
+      <li
+        *ngFor="let palabra of palabrasOrdenadasPorLongitud()"
+        class="p-2 mb-2 bg-white rounded shadow"
+      >
+        {{ palabra }}
+      </li>
+    </ul>
+  </div>
+</div>
